@@ -1,0 +1,92 @@
+{% extends "registration/registration_base.html" %}
+{% block title %}Login{% endblock %}
+{% block extrahead %}
+
+{% endblock %}
+{% block content %}
+<div id="user">
+
+{% if form.errors %}
+<p><strong>Your username and password didn't match. Please try again.</strong></p>
+{% endif %}
+
+<form  method="post" action="{% url django.contrib.auth.views.login %}">{% csrf_token %}
+
+<table>
+<tr>
+	<td><strong><i class="icon-pencil"></i>Enter Login Details:<strong></td>
+</tr>
+<tr>
+	<td><hr></td><td><hr></td>
+</tr>
+<tr>
+<td>
+{% if form.username.errors %}<td class="errors">{{form.username.errors}}</td>{% endif %}</td>
+</tr>
+
+<tr>
+
+    
+    <td>{{ form.username.label_tag }}</td>
+    
+    <td>{{ form.username }}</td>
+    
+    
+</tr>
+<tr>
+	<td><hr></td><td><hr></td>
+</tr>
+
+<tr>
+<td>
+{% if form.password.errors %}<td class="errors">{{form.password.errors}}</td>{% endif %}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+<tr>
+	<td><hr></td><td><hr></td>
+</tr>
+
+</table>
+
+<p><a href="{% url auth_password_reset %}">Forgot</a> your password?  <a href="{% url registration_register %}">Need an account</a>?</p>
+
+<input class="btn btn-inverse" type="submit" value="Sign In" />
+<input type="hidden" name="next" value="{{ next }}" />
+
+</form>
+</div>
+
+<div id="socialicons">
+<p><i class="icon-thumbs-up"></i> <strong>Login Using:</strong></p>
+<hr>
+                <ul class="nav nav-list">
+                  <li>
+                  
+   <a href=""><img src="/media/bootstrap/img/facebook.png/">
+	                  Facebook Account
+                    </a>
+                  </li>
+                  
+                  <li>
+                
+   <a href="#"><img src="/media/bootstrap/img/twitter.png/">
+	
+                      Twitter Account
+                    </a>
+                  </li>
+                 
+                  
+                 
+                  <li>
+                  
+   <a href="#"><img src="/media/bootstrap/img/google.png/">
+                      Google Account
+                    </a>
+                  </li>
+                 
+                 </ul>
+</div>
+{% endblock %}

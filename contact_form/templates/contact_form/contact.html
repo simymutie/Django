@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="contact">
+
+<p style="margin-left:200px; font-size:22px; margin-bottom:-40px;"><strong><u>{% trans "FeedBack & Suggestions." %}</u></strong></p>
+
+<form action="" method="post">{% csrf_token %}
+    <p>{{ form.as_ul }}</p>
+    <input class="btn btn-primary" type="submit" value="{% trans "Send FeedBack" %}" />
+</form>
+</div>
+{% endblock %}
+

@@ -1,0 +1,12 @@
+from django.conf.urls.defaults import url, patterns
+
+from contact_form import views, forms, completed
+
+
+urlpatterns = patterns('',
+    url(r'^$', views.ContactFormView.as_view(
+        template_name="contact_form/contact.html",
+        form_class=forms.BasicContactForm,
+    ), name="contact"),
+    url(r'^completed/$', 'contact.view.completed'),
+)

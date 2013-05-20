@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block fulltitle %}Contact me!{% block title %}{% endblock %}{% endblock %}
+
+{% block content %}
+<div id="contact">
+
+{% if form.errors %}
+<p><strong>Correct the Following Fileds.*</strong></p>
+{% endif %}
+
+
+    <form method='post' action=''>{% csrf_token %}
+    
+      {{ form }}
+      <br>
+       <input type="submit" class="btn btn-primary" rel="tooltip" title="first tooltip" value="Send FeedBack" />
+    </form>
+</div>
+{% endblock %}
+

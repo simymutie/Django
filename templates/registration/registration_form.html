@@ -1,0 +1,25 @@
+{% extends "registration/registration_base.html" %}
+{% block title %}Register for an account{% endblock %}
+{% block content %}
+<div id="register">
+<style type="text/css">
+ul {
+color:#A01;
+}
+</style>
+
+<table>
+<tr>
+	<td><strong>Enter Registration Details:<strong></td>
+</tr>
+<tr>
+	<td><hr></td><td><hr></td>
+</tr>
+    <form method='post' action=''>{% csrf_token %}
+    
+      {{ form }}
+        <tr><td></td><td><input type="submit" class="btn btn-success" rel="tooltip" title="first tooltip" value="Send Activation Email" /></td>
+    </form>
+</table>
+</div>
+{% endblock %}

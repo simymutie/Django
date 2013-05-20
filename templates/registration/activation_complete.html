@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Activation complete{% endblock %}
+{% block content %}
+<div id="user">
+<p>Thanks, activation complete!  You may now <a href='{% url auth_login %}'>login</a> using the username and password you set at registration.</p>
+</div>
+{% endblock %}
+
+

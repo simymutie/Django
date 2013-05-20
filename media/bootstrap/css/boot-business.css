@@ -1,0 +1,42 @@
+
+.signin-with-list {
+  list-style: none;
+}
+.signin-with-list > li {
+  margin-top: 20px;
+}
+.signin-with-list > li > a {
+  color: white;
+  padding: 8px;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-facebook {
+  background: #3679EA;
+  -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+         border-radius: 3px;
+}
+.btn-twitter {
+  background: #53cbe9;
+  -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+         border-radius: 3px;
+}
+.btn-google {
+  background: #7288de;
+  -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+         border-radius: 3px;
+}
+.btn-github {
+  background: #2E3436;
+  -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+         border-radius: 3px;
+}
+.btn-facebook:hover, .btn-twitter:hover,
+.btn-google:hover, .btn-github:hover {
+  text-decoration: none;
+}
+

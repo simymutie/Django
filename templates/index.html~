@@ -1,0 +1,66 @@
+{% extends "base.html"%}
+{% block title %}{% if user.is_authenticated %}	DotSafari | {{ user.username }} {% else %}
+		
+	 DotSafari | Living the Smart World with the full Experience.{% endif %}
+ {% endblock %}
+
+{% block content%}
+
+	<div class="slider-wrapper theme-default">
+                   <div class="ribbon"></div>
+            <div id="slider" class="nivoSlider">
+                <a href="#"><img src="/media/slide/photos/img1.jpg" alt="" title="" /></a>
+                <a href="#"><img src="/media/slide/photos/img2.jpg" alt="" data-transition="slideInLeft" title="" /></a>
+                <a href="#"><img src="/media/slide/photos/img3.jpg" alt="" title="" /></a>
+                <a href="#"><img src="/media/slide/photos/img4.jpg" alt="" title="" /></a>
+               
+            </div>
+            <div id="htmlcaption" class="nivo-html-caption">
+                <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
+            </div>
+        </div>	
+   	<hr></hr>
+
+   	{% for homepage in homepage %}
+   	
+  	
+   	<p>Title:&nbsp;<strong>{{homepage.title}}</strong> &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">Category: {{homepage.category_}}</a> &nbsp; | Date: {{homepage.date}}&nbsp; </p>
+   	
+   	<div id="contentinfo">
+  
+<div id="thumbnail">
+  <a href=""><img src="{{ homepage.image.small.url }}"/></a>
+   	</div>
+  <div id="bodyinfo">
+   <p>{{homepage.content}}</p>
+<br></br>
+
+   <p>
+  <button class="btn btn-inverse pull-right" type="button"><a href="">Read More...</a></button>
+  
+</p>
+  </div>
+  </div>
+ 
+   	{% endfor %}
+   	
+  <div id="pagination">
+  
+    <ul class="pager">
+        {% if homepage.has_previous %}
+            <li class="previous"><a href="?page={{ homepage.previous_page_number }}">&nbsp;&nbsp;&larr;Newer</a></li>
+        {% endif %}
+        
+        {% if homepage.has_previous or homepage.has_next  %}
+        {% for page_num in homepage.paginator.page_range %}
+        <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+        {% endfor %}
+        {% endif %}
+        
+        {% if homepage.has_next %}
+            <li class="next"><a href="?page={{ homepage.next_page_number }}">Older&rarr;</a></li>
+        {% endif %}
+    </ul>
+</div>     
+ <hr></hr>
+   {% endblock %}
