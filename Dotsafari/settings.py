@@ -1,12 +1,15 @@
 # Django settings for Dotsafari project.
-import os.path
-
+import os.path, sys, os
+BASE_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('simi', 'simihmutie@gmail.com'),
+    ('simih', 'symutiesimih@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -16,7 +19,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'Shoppy',                      # Or path to database file if using sqlite3.
         'USER': 'Shoppy',                      # Not used with sqlite3.
-        'PASSWORD': 'simonmutie',                  # Not used with sqlite3.
+        'PASSWORD': 'simonmute',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -44,10 +47,10 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
-
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'media')
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/simih/Desktop/Dotsafari/media/'
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -58,12 +61,12 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/simih/Desktop/Dotsafari/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
-
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -105,8 +108,7 @@ ROOT_URLCONF = 'Dotsafari.urls'
 WSGI_APPLICATION = 'Dotsafari.wsgi.application'
 
 TEMPLATE_DIRS = (
-				'/home/simih/Desktop/Dotsafari/templates/'
-
+os.path.realpath(PROJECT_PATH + '/templates'),
 )
 
 
@@ -125,7 +127,8 @@ INSTALLED_APPS = (
     'registration_email',
     'easy_thumbnails',
     'contact_form',
-   
+   'haystack',
+    'south',
     
     
     
@@ -136,6 +139,19 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'utils.context_processors.shopcart',
+)
+
+SITE_NAME = "http://127.0.0.1:8000"
+
+HAYSTACK_SITECONF = 'search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'whoosh')
 
 
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -153,12 +169,12 @@ SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 FACEBOOK_APP_ID='387051588076545'
 FACEBOOK_API_SECRET='ebeaf30c5628ff33b0cac6f95b2a7f4b'
 LOGIN_REDIRECT_URL = '/'
-#EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST ='localhost'
-#EMAIL_HOST_USER = 'symutiesimih@gmail.com'
-#EMAIL_HOST_PASSWORD = 'patricia500'
-#EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'symutiesimih@gmail.com'
+ENABLE_SSL = True
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'symutiesimih@gmail.com'
+EMAIL_HOST_PASSWORD = 'patricia500'
+EMAIL_USE_TLS = True
 
 THUMBNAIL_ALIASES = {
     '': {
@@ -196,3 +212,7 @@ LOGGING = {
         },
     }
 }
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
